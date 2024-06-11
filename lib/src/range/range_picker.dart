@@ -53,6 +53,7 @@ class RangeDatePicker extends StatefulWidget {
     super.key,
     required this.maxDate,
     required this.minDate,
+    this.onDateSelected,
     this.onRangeSelected,
     this.currentDate,
     this.initialDate,
@@ -103,6 +104,9 @@ class RangeDatePicker extends StatefulWidget {
   ///
   /// Note that only dates are considered. time fields are ignored.
   final DateTime? initialDate;
+
+  /// Called when the user picks a start date.
+  final ValueChanged<DateTime>? onDateSelected;
 
   /// Called when the user picks a range.
   final ValueChanged<DateTimeRange>? onRangeSelected;
@@ -361,6 +365,8 @@ class _RangeDatePickerState extends State<RangeDatePicker> {
                 _selectedStartDate = date;
                 _selectedEndDate = null;
               });
+
+              widget.onDateSelected?.call(_selectedStartDate!);
             },
           ),
         );
