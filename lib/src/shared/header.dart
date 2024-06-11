@@ -53,6 +53,9 @@ class Header extends StatelessWidget {
     this.centerLeadingDate = false,
     this.previousPageSemanticLabel,
     this.nextPageSemanticLabel,
+    this.currentDate,
+    this.minDate,
+    this.maxDate,
   });
 
   /// The currently displayed date. It is typically in a format
@@ -85,6 +88,10 @@ class Header extends StatelessWidget {
   /// (forward and backward).
   final double slidersSize;
 
+  final DateTime? currentDate;
+  final DateTime? minDate;
+  final DateTime? maxDate;
+
   /// Centring the leading date. e.g:
   ///
   /// <       December 2023      >
@@ -111,7 +118,9 @@ class Header extends StatelessWidget {
           child: Icon(
             Icons.arrow_forward_ios_rounded,
             size: slidersSize,
-            color: slidersColor,
+            color: maxDate != null && maxDate!.year == currentDate?.year && maxDate!.month == currentDate?.month
+                ? Colors.grey
+                : slidersColor,
           ),
         ),
       ),
@@ -129,7 +138,9 @@ class Header extends StatelessWidget {
           child: Icon(
             Icons.arrow_back_ios_rounded,
             size: slidersSize,
-            color: slidersColor,
+            color: minDate != null && minDate!.year == currentDate?.year && minDate!.month == currentDate?.month
+                ? Colors.grey
+                : slidersColor,
           ),
         ),
       ),

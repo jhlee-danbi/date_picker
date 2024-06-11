@@ -410,6 +410,9 @@ class __RangeDaysPickerState extends State<RangeDaysPicker> {
               leadingDateTextStyle: leadingDateTextStyle,
               slidersColor: slidersColor,
               slidersSize: slidersSize,
+              currentDate: _displayedMonth!,
+              minDate: widget.minDate,
+              maxDate: widget.maxDate,
               onDateTap: () => widget.onLeadingDateTap?.call(),
               displayedDate: MaterialLocalizations.of(context)
                   .formatMonthYear(_displayedMonth!)
